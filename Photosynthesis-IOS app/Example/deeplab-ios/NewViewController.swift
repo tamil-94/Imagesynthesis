@@ -1,10 +1,4 @@
-//
-//  NewViewController.swift
-//  PhotoSynthesis
-//
-//  Created by Mithun on 10/7/19.
-//  Copyright © 2019 xyh. All rights reserved.
-//
+
 
 import AVFoundation
 import UIKit
@@ -136,10 +130,16 @@ class NewViewController: UIViewController, UIDropInteractionDelegate, UIDragInte
             
                                 
             imageView.addSubview(self.imageView1)
-            self.imageView1.frame = CGRect(x: xpoint, y: ypoint, width: bgwidth!/2, height: bgheight!/2)
+            self.imageView1.contentMode = .scaleAspectFit
+            self.imageView1.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-80)
             //self.dragsize.width = 300
             //self.dragsize.height = 350
-            self.dragsize = CGSize(width: bgwidth!/2, height: bgheight!/2)
+            let fgsize = self.imageView1.getScaledImageSize()
+            let fgwidth = fgsize?.size.width
+            //print("background image width")
+            //print(bgwidth)
+            let fgheight = fgsize?.size.height
+            self.dragsize = CGSize(width: fgwidth!, height: fgheight!)
             self.imageView1.addInteraction(dragdelegate)
             self.imageView1.addInteraction(UIDropInteraction(delegate: self))
             self.imageView1.isUserInteractionEnabled = true
@@ -158,8 +158,7 @@ class NewViewController: UIViewController, UIDropInteractionDelegate, UIDragInte
     }
 }
 extension UIImageView {
-    /// Retrieve the scaled size of the image within this ImageView.
-    /// - Returns: A CGRect representing the size of the image after scaling or nil if no image is set.
+   
     func getScaledImageSize() -> CGRect? {
         if let image = self.image {
             return AVMakeRect(aspectRatio: image.size, insideRect: self.frame);
