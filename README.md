@@ -5,7 +5,7 @@ An IOS app that use segmented human image from foreground picture and merge it w
 # Requirements:
 
 - Swift > 4
-- IOS > 11
+- IOS > 12
 
 # Installation:
 
