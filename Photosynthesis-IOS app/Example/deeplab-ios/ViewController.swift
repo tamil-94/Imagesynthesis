@@ -1,10 +1,3 @@
-//
-//  InitialViewController.swift
-//  PhotoSynthesis
-//
-//  Created by Mithun on 10/19/19.
-//  Copyright © 2019 xyh. All rights reserved.
-//
 
 import UIKit
 
@@ -33,12 +26,13 @@ class ViewController: UIViewController{
     
     
     @IBAction func loadImageButton(){
-        if(count <= 2){
+        if(count < 2){
             if (count == 0) {
                     let alert = UIAlertController(title: "Select a foreground image", message: "", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: {_ in self.loadImage()})
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
+                count = count + 1
                    
             }
             else if(count == 1){
@@ -46,11 +40,16 @@ class ViewController: UIViewController{
                 let okAction = UIAlertAction(title: "OK", style:UIAlertAction.Style.default,handler: {_ in self.loadImage()})
                 alert.addAction(okAction)
                 self.present(alert, animated: true, completion: nil)
+                count = count + 1
+                
             }
             //loadImage()
-            count = count + 1
+            //count = count + 1
             //print("func",count)
            
+        }
+        else if (count == 2){
+            count = 0
         }
     }
     
@@ -71,7 +70,7 @@ class ViewController: UIViewController{
         if(segue.identifier == "initialtoview"){
             if(rear_img != nil) || (front_img != nil){
             //print("inside segue")
-        let displayVC = segue.destination as! ImageViewController
+            let displayVC = segue.destination as! ImageViewController
             displayVC.sourceImg = self.front_img
             displayVC.sourceImg1 = self.rear_img
            
@@ -79,6 +78,7 @@ class ViewController: UIViewController{
             else{
                 print("error")
             }
+            
     }
        
     }
@@ -91,13 +91,16 @@ extension ViewController: UIImagePickerControllerDelegate,UINavigationController
             if(count == 1){
                 //print("picker",count)
             front_img = pickedImage.resize(size: CGSize(width: 1200, height: 1200 * (pickedImage.size.height / pickedImage.size.width)))
+                
              
         }
             else if(count == 2){
                 //print("count",count)
                 rear_img = pickedImage.resize(size: CGSize(width: 1200, height: 1200 * (pickedImage.size.height / pickedImage.size.width)))
+              
                     self.performSegue(withIdentifier: "initialtoview", sender: self)
-                           
+                
+               
             }
  
         picker.dismiss(animated: true, completion: nil)
