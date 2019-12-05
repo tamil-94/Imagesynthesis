@@ -12,7 +12,7 @@ step2 : run the script using the command as follows :
      1. dummy.jpg is the dummy input image to which the model apply the style transfer and it can be a blank image.
         The pixel size of this image is important, as this will be the size for the exported style transfer model. 
      2. dummy-out.jpg is the output image generated after the conversion 
-     3. saved models - is the final checkpoint or trained model of fcn which is fcn8 
+     3. saved models - is the final checkpoint or trained model of fcn which is fcn8.pth
      4. if running in gpu set cuda to 1 or in cpu set it to 0 .
      5. fcn8.onnx is the to be converted onnx file name. 
      
