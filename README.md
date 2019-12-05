@@ -24,3 +24,6 @@ An IOS app that use segmented human image from foreground picture and merge it w
 # Debug:
 
 Incase ran into an error like cycles inside photosynthesis app or multiple files using this app, go to project -> build phases -> copy bundle resources -> delete the photosynthesis.app included in it (select the photosynthesis.app and click "-"). 
+
+
+
